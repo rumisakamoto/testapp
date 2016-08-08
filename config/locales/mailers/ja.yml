@@ -1,0 +1,53 @@
+ja:
+  info_mail:
+    daily:
+      title: 【%{brand} 日次報告】新着記事のお知らせ
+      header: === %{brand} 新着記事のお知らせ ===
+      article:
+        header: --- 昨日投稿された公開記事 ---
+        count: 投稿総数：
+        caution: |
+          ※アカウントの権限と記事の公開範囲によっては表示できない場合があります。ご了承ください。
+          ※未ログインの場合は権限エラーになります。その場合はログインしてから再度アクセスしてください。
+        title: タイトル：
+        author: 作者：
+        link: 記事を見る：
+      no_article:
+        message: |
+          昨日は公開記事の投稿がありませんでした。
+          みなさん投稿しましょう！
+    weekly:
+      title: 【%{brand} 週次報告】推薦・お気に入り獲得数別記事ランキング
+      header: === %{brand} 推薦・お気に入り獲得記事のお知らせ ===
+      article:
+        caution: |
+          ※アカウントの権限と記事の公開範囲によっては表示できない場合があります。ご了承ください。
+          ※未ログインの場合は権限エラーになります。その場合はログインしてから再度アクセスしてください。
+        rank: ◆第 %{rank} 位◆
+        recommend:
+          header: --- 先週推薦獲得数が多かった公開記事 BEST %{rank_count} ---
+        favorite:
+          header: --- 先週お気に入り獲得数が多かった公開記事 BEST %{rank_count} ---
+        title: タイトル：
+        author: 作者：
+        link: 記事を見る：
+      no_article:
+        recommend:
+          message: |
+            先週は公開記事の推薦がありませんでした。
+            みなさん記事をチェックしましょう！
+        favorite:
+          message: |
+            先週は公開記事のお気に入りがありませんでした。
+            みなさん記事をチェックしましょう！
+    monthly:
+      title: 【%{brand} 月次報告】公開記事投稿数別ユーザランキング
+      user:
+        rank: ◆第 %{rank} 位◆
+        header: === %{brand} 先月公開記事投稿が多かったユーザ BEST %{rank_count} ===
+        name: ユーザ名：
+        articles_count: 投稿数：
+      no_user:
+        message: |
+          先月は公開記事を投稿したユーザがいませんでした。
+          みなさん投稿しましょう！

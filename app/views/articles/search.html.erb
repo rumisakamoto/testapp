@@ -1,0 +1,13 @@
+<%= search_result_title params[:search_word] %>
+<%= render partial: 'list' %>
+
+<script type="text/javascript">
+  <%- unless @search_words.blank? -%>
+    var search_words = new Array();
+    <%- @search_words.each do |word| -%>
+    $('.articleDiv').highlight("<%= word %>");
+    $('.articleTitle').highlight("<%= word %>");
+    <%- end -%>
+    $('#search_word').val('<%= params[:search_word] %>');
+  <%- end -%>
+</script>

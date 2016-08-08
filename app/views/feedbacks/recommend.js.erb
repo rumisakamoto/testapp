@@ -1,0 +1,22 @@
+$(function(feedback){
+  var id = <%= feedback.id %>;
+  var button = '<%= recommend_feedback_button(feedback) %>';
+  var span = $('#feedbackRecommendBtn_' + id);
+  var error_span = $('#feedbackAjaxErrorSpan_' + id);
+  $(".recommend_feedback_btn")
+  .one("ajax:success", function(){
+    error_span.empty();
+    span.html(button);
+  })
+  .one("ajax:error", function(){
+    error_span.html("<%= escape_javascript ajax_error_messages('.item') %>");
+  })
+  $(".cancel_recommend_feedback_btn")
+  .one("ajax:success", function(){
+    error_span.empty();
+    span.html(button);
+  })
+  .one("ajax:error", function(){
+    error_span.html("<%= escape_javascript ajax_error_messages('.item') %>");
+  })
+});

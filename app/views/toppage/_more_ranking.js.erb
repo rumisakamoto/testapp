@@ -1,0 +1,21 @@
+$(function(model_list, ranking_type){
+  var more_link_id ="#<%= Toppage::Ranking::MoreLink::ID_PREFIX %><%= ranking_type %><%= Toppage::Ranking::MoreLink::ID_SUFFIX %>";
+  var more_link_span_id = "#<%=Toppage::Ranking::MoreLink::ID_PREFIX %><%= ranking_type %>_ranking_link_span";
+  $(more_link_id)
+    .one("ajax:success", function() {
+      <% unless model_list.blank? %>
+        var ranking_span_id = "<%= Toppage::Ranking::MoreLink::ID_PREFIX %><%= ranking_type %>_ranking_span";
+        var ranking_span = $("#" + ranking_span_id);
+        <% model_list.each do |model| %>
+          ranking_span.append('<%= escape_javascript ranking_item(model, ranking_type) %>');
+        <% end %>
+      <% end %>
+      $(more_link_id).off('click');
+    var more_link_span = $(more_link_span_id);
+      more_link_span.empty();
+      more_link_span.append('<%= more_ranking_link(model_list, ranking_type) %>');
+    })
+    .one("ajax:error", function(){
+      ranking_span.append('<%= escape_javascript(alert_messages(t("ranking.load_error"))) %>');
+    })
+});

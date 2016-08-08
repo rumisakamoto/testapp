@@ -1,0 +1,29 @@
+<div align="center">
+  <%#= image_tag 'logo.png', :width => 200, :height => 150 %>
+</div>
+<br/>
+<div align="center">
+  <h1><%= t('brand_name') %></h1>
+  <h4><%= t('brand_name_sub') %></h4>
+</div>
+<br/>
+<div>
+<p>
+<%= welcome_message %>
+</p>
+</div>
+<br/>
+<div align="center">
+<%= link_to_signup %>
+<% if current_user %>
+    <%= link_to t('logout'), logout_path %>
+    &nbsp;|&nbsp;
+  <%= link_to t('article_list'), articles_path %>
+<% else %>
+    <%= link_to t('login'), login_path %>
+    &nbsp;|&nbsp;
+  <%= link_to t('article_list'), articles_path %>
+<% end %>
+&nbsp;|&nbsp;
+<%= link_to get_resource('guide'), articles_search_path(search_word: get_resource('guide_title')) %>
+</div>

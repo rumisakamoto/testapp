@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    attributes:
+      article:
+        title: "タイトル"
+        content: "記事詳細"
+        notation_type: "マークアップ記法"
+        publicity_level: "公開範囲"
+        article_recommendations_count: "被推薦回数"
+        feedbacks_count: "コメント数"
+        favorites_count: "お気に入り登録数"
+        selected_tags: "タグ"
+        added_tags: "タグを追加"
+  article:
+    tag_help: "書き方：[タグ名1][タグ名2]..."
+    markup_help: "pukiwiki記法はtable未対応です。"
+    edit: "編集"
+    preview: "プレビュー"
+    tag_validation_error: "を選択するか追加してください。"

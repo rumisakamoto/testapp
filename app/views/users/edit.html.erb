@@ -1,0 +1,10 @@
+<%= page_title %>
+
+<% if Settings.authentication.setting == Settings.authentication.methods.app %>
+  <%= alert_messages get_resource('app_message') %>
+<% end %>
+<%= render 'form' %>
+<br/>
+<%= link_to user_path(@user), class: "btn" do %>
+  <i class="icon-arrow-left"></i> <%= t('.cancel') %>
+<% end %>

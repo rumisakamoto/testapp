@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    attributes:
+      feedback:
+        notation_type: "マークアップ記法"
+        content: "コメント"
+        feedback_type: "フィードバック種別"
+  feedback:
+    edit: "編集"
+    preview: "プレビュー"
+    types:
+      normal: "感想/コメント"
+      supplement: "補足"
+      correction: "訂正"
+

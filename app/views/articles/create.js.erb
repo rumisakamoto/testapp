@@ -1,0 +1,18 @@
+$(function(article){
+  $("form#new_article")
+    .one("ajax:success", function(){
+      <% if @article.errors.empty? %>
+        window.location.href = "<%= articles_url %>";
+      <% else %>
+        var span = $('#new_article_validation_error_span')
+        span.empty();
+        span.html('<%= escape_javascript(error_messages(article)) %>');
+      <% end %>
+    })
+    .one("ajax:error", function(){
+      var span = $('#new_article_validation_error_span')
+      span.empty();
+      span.html('<%= escape_javascript(alert_messages(t('.new_article_error'))) %>');
+      <% logger.error "Failed to create new article" %>
+    })
+});

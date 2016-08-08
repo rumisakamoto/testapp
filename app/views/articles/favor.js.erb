@@ -1,0 +1,17 @@
+$(function(article){
+  var id = <%= article.id %>;
+  var button = '<%= favorite_button(article) %>';
+  var span = $('#articleFavoriteBtn_' + id);
+  $(".favorite_btn")
+    .one("ajax:success", function(){
+      span.html(button);
+    })
+    .one("ajax:error", function(){
+    })
+  $(".cancel_favorite_btn")
+    .one("ajax:success", function(){
+      span.html(button);
+    })
+    .one("ajax:error", function(){
+    })
+});

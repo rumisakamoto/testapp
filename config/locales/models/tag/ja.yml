@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      tag:
+        name: "タグ名"
+        icon_url: "アイコンURL"
+        user_id: "作成者"
+        article_tag_rels_count: "投稿数"
+        created_at: "登録日"

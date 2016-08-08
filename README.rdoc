@@ -1,0 +1,24 @@
+== Welcome
+
+This application is the melting pot of your knowledge.
+
+== Getting Started
+
+Checkout source code and edit your config/database.yml.
+
+ $ vi config/database.yml
+
+create database.
+
+ $ rake db:create
+ $ rake db:migrate
+
+initial data load.
+
+ $ rake db:seed
+
+start application.
+
+ $ rails s
+
+You can login as admin with username: admin@example.com and password: admin.

@@ -1,0 +1,7 @@
+<% @articles.each do |article| %>
+    <%= render partial: 'article', locals: { article: article } %>
+<% end %>
+<span id="more_articles_span"></span>
+<span id="more_button_span">
+  <%= render partial: 'more' %>
+</span>

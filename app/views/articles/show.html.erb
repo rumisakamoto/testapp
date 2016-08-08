@@ -1,0 +1,6 @@
+<%= render partial: 'article', locals: {article: @article} %>
+<% if can? :create, Feedback %>
+  <%= render 'feedbacks/form'%>
+<% end %>
+<%= render 'feedbacks/list' %>
+<%= back_to_article_index_button %>

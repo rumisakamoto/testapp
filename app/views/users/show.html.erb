@@ -1,0 +1,16 @@
+<%= page_title %>
+<br/>
+<!-- tab headers -->
+<ul class="nav nav-pills" id="user_tab">
+  <li id="histories_tab" class="active"><a href="#histories_tabcontent" data-toggle="pill"><i class="icon-time"></i> <%= t('.histories') %></a></li>
+  <li id="user_info_tab" ><a href="#user_info_tabcontent" data-toggle="pill"><i class="icon-pencil"></i> <%= t('.user_info') %></a></li>
+</ul>
+<!-- tab contents -->
+<div id="user_tab_content" class="tab-content">
+  <div class="tab-pane fade in active" id="histories_tabcontent">
+    <%= render 'histories' %>
+  </div>
+  <div class="tab-pane fade" id="user_info_tabcontent">
+    <%= render 'userinfo' %>
+  </div>
+</div>

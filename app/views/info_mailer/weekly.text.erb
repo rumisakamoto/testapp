@@ -1,0 +1,39 @@
+<%= t 'info_mail.weekly.header', brand: t('brand_name') %>
+
+<% if !@recommended_articles.nil? && @recommended_articles.any? || -%>
+<%    !@favored_articles.nil? && @favored_articles.any? -%>
+<%= t 'info_mail.weekly.article.caution' %>
+<%- end -%>
+<% if !@recommended_articles.nil? && @recommended_articles.any? -%>
+<%= t 'info_mail.weekly.article.recommend.header', rank_count: Settings.ranking.item_count %>
+
+<% @recommended_articles.each_with_index do |article, i| -%>
+<%= t 'info_mail.weekly.article.rank', rank: (i + 1) %>
+<%= t 'info_mail.weekly.article.title' %><%= article.title %>
+<%= t 'info_mail.weekly.article.author' %><%= article.user.nickname %>
+<%= t 'info_mail.weekly.article.link' %><%= article_path id: article.id, only_path: false, host: Settings.host_name %>
+
+<%- end %>
+
+<% else -%>
+<%= t 'info_mail.weekly.no_article.recommend.message' %>
+<%= root_path only_path: false, host: Settings.host_name %>
+<%- end %>
+
+---
+
+<% if !@favored_articles.nil? && @favored_articles.any? -%>
+<%= t 'info_mail.weekly.article.favorite.header', rank_count: Settings.ranking.item_count %>
+
+<% @favored_articles.each_with_index do |article, i| -%>
+<%= t 'info_mail.weekly.article.rank', rank: (i + 1) %>
+<%= t 'info_mail.weekly.article.title' %><%= article.title %>
+<%= t 'info_mail.weekly.article.author' %><%= article.user.nickname %>
+<%= t 'info_mail.weekly.article.link' %><%= article_path id: article.id, only_path: false, host: Settings.host_name %>
+
+<%- end %>
+
+<% else -%>
+<%= t 'info_mail.weekly.no_article.favorite.message' %>
+<%= root_path only_path: false, host: Settings.host_name %>
+<%- end %>

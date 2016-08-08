@@ -1,0 +1,41 @@
+<%= page_title %>
+<div align="right">
+  <%= link_to new_tag_path, class: "btn" do -%><i class="icon-plus"></i><%- end -%>
+</div>
+<hr/>
+<center>
+  <%= will_paginate @tags %>
+</center>
+<br/>
+<table class="table table-striped">
+  <thead>
+    <th><%= t('activerecord.attributes.tag.name') %></th>
+    <th><%= t('activerecord.attributes.tag.user_id') %></th>
+    <th><%= t('activerecord.attributes.tag.icon_url') %></th>
+    <th><%= t('activerecord.attributes.tag.article_tag_rels_count') %></th>
+    <th><%= t('activerecord.attributes.tag.created_at') %></th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.name %></td>
+        <td><%= link_to tag.creator.nickname, user_path(tag.creator)  %></td>
+        <td><%= tag_icon(tag) %></td>
+        <td><%= link_to tag.article_tag_rels_count, articles_by_tag_path(tag) %></td>
+        <td><%= tag.created_at.to_s(:long_jp2) %></td>
+        <td><%= link_to edit_tag_path(tag), class: "btn" do -%><i class="icon-pencil"></i><%- end -%></td>
+        <td><%= tag_remove_button(tag) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<center>
+  <%= will_paginate @tags %>
+</center>
+
+

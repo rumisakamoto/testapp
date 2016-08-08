@@ -1,0 +1,17 @@
+$(function(){
+  $("#show_more_articles")
+    .one("ajax:success", function() {
+      var span = $("#more_articles_span");
+      <% @articles.each do |article| -%>
+        span.append('<%= escape_javascript(render file: "articles/_article.html.erb", layout: nil, locals: { article: article }) %>');
+      <%- end %>
+      $("#show_more_articles").off('click');
+      var button_span = $("#more_button_span");
+      button_span.empty();
+      button_span.html('<%= escape_javascript(render file: "articles/_more.html.erb", layout: nil) %>')
+    })
+    .one("ajax:error", function(){
+      var span = $("#more_articles_span");
+      span.append('<%= escape_javascript(alert_messages(t(".list_load_error"))) %>');
+    })
+});

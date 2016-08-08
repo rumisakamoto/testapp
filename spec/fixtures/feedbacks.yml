@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  article_id: 1
+  user_id: 1
+  feedback_type: 1
+  parent_feedback_id: 1
+  feedback_recommendations_count: 1
+  content: MyText
+  deleted_at: 2012-05-25 14:11:01
+  lock_version: 1
+
+two:
+  article_id: 1
+  user_id: 1
+  feedback_type: 1
+  parent_feedback_id: 1
+  feedback_recommendations_count: 1
+  content: MyText
+  deleted_at: 2012-05-25 14:11:01
+  lock_version: 1

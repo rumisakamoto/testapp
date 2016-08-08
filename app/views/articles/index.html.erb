@@ -1,0 +1,134 @@
+<%-
+  tab = Article::Tab::Suffix::TAB
+  tabcontent = Article::Tab::Suffix::TAB_CONTENT
+  all_articles_tab = Article::Tab::Type::ALL + tab
+  all_articles_tabcontent = Article::Tab::Type::ALL + tabcontent
+  my_articles_tab = Article::Tab::Type::MY + tab
+  my_articles_tabcontent = Article::Tab::Type::MY + tabcontent
+  privates_tab = Article::Tab::Type::PRIVATES + tab
+  privates_tabcontent = Article::Tab::Type::PRIVATES + tabcontent
+  favorites_tab = Article::Tab::Type::FAVORITES + tab
+  favorites_tabcontent = Article::Tab::Type::FAVORITES + tabcontent
+  #recommends_tab = Settings.articles_tab.type.recommends + tab
+  #recommends_tabcontent = Settings.articles_tab.type.recommends + tabcontent
+  recent_recommend_tab = Article::Tab::Type::RECENTLY_RECOMMENDED + tab
+  recent_recommend_tabcontent = Article::Tab::Type::RECENTLY_RECOMMENDED + tabcontent
+  #recent_favorite_tab = Settings.articles_tab.type.recent_favorite + tab
+  #recent_favorite_tabcontent = Settings.articles_tab.type.recent_favorite + tabcontent
+  recent_feedback_tab = Article::Tab::Type::RECENTLY_FEEDBACKED + tab
+  recent_feedback_tabcontent = Article::Tab::Type::RECENTLY_FEEDBACKED + tabcontent
+-%>
+<script type='text/javascript'>
+  $(function(){
+    function clearAllTabs(){
+      $('#<%= favorites_tabcontent %>').empty();
+      $('#<%= all_articles_tabcontent %>').empty();
+      $('#<%= my_articles_tabcontent %>').empty();
+      $('#<%= privates_tabcontent %>').empty();
+      $('#<%= recent_feedback_tabcontent %>').empty();
+      $('#<%= recent_recommend_tabcontent %>').empty();
+    };
+    function loadTabArticles(event){
+      var clickedTabId = event.currentTarget.id;
+      var tabType = clickedTabId.replace('<%= tab %>', '');
+      var tabContentId = clickedTabId.replace('<%= tab %>', '<%= tabcontent %>');
+      $.ajax({
+        type: 'get',
+        url: '<%= articles_path %>',
+        dataType: 'html',
+        data: {
+          tab_type: tabType
+        },
+        success: function(data, textStatus){
+          clearAllTabs();
+          $('#' + tabContentId).html(data);
+        },
+        error: function(){
+          $('#' + tabContentId).html('<%= escape_javascript(alert_messages(t(".list_load_error"))) %>');
+        }
+      })
+    };
+    $('#<%= all_articles_tab %>').click(loadTabArticles);
+    $('#<%= my_articles_tab %>').click(loadTabArticles);
+    $('#<%= privates_tab %>').click(loadTabArticles);
+    $('#<%= favorites_tab %>').click(loadTabArticles);
+    $('#<%= recent_feedback_tab %>').click(loadTabArticles);
+    $('#<%= recent_recommend_tab %>').click(loadTabArticles);
+    function toggle_new_article_form() {
+      $('#new_article_div').toggle("fast");
+      $('#new_article_button_div').toggle("fast");
+    };
+    $('#new_article_div').hide();
+    $('#new_article_button').click(toggle_new_article_form);
+    $('#new_article_close_button').click(toggle_new_article_form);
+  });
+</script>
+
+<% if can? :create, @article %>
+<div id='new_article_div'>
+  <%= render 'new_article_form' %>
+</div>
+<div id='new_article_button_div' align='center'>
+  <button id='new_article_button' class='btn btn-large btn-primary'>
+    <i class='icon-edit'></i> <%= t('.new_article') %>
+  </button>
+</div>
+<br/>
+<% end %>
+
+<!-- tab headers -->
+<ul class='nav nav-pills' id='article_list_tab'>
+  <li id='<%= all_articles_tab %>' class='active'>
+    <%= link_to '#' + all_articles_tabcontent, 'data-toggle' => :pill do -%>
+      <%= t('.all_articles') %>
+    <%- end -%>
+  </li>
+  <li id='<%= recent_feedback_tab %>'>
+    <%= link_to '#' + recent_feedback_tabcontent, 'data-toggle'.to_sym => :pill do -%>
+      <%= t('.recent_feedback') %>
+    <%- end -%>
+  </li>
+  <li id='<%= recent_recommend_tab %>'>
+    <%= link_to '#' + recent_recommend_tabcontent, 'data-toggle'.to_sym => :pill do -%>
+      <%= t('.recent_recommend') %>
+    <%- end -%>
+  </li>
+  <%- if can? :favor, Article -%>
+    <li id='<%= favorites_tab %>' >
+    <%= link_to '#' + favorites_tabcontent, 'data-toggle'.to_sym => :pill do -%>
+      <i class='icon-bookmark'></i> <%= t('.favorites') %>
+    <%- end -%>
+    </li>
+  <%- end -%>
+  <%- if can? :create, Article -%>
+    <li id='<%= my_articles_tab %>' >
+    <%= link_to '#' + my_articles_tabcontent, 'data-toggle'.to_sym => :pill do -%>
+      <i class='icon-pencil'></i> <%= t('.my_articles') %>
+    <%- end -%>
+    </li>
+    <li id='<%= privates_tab %>' >
+    <%= link_to '#' + privates_tabcontent, 'data-toggle'.to_sym => :pill do -%>
+      <i class='icon-heart'></i> <%= t('.privates') %>
+    <%- end -%>
+    </li>
+  <%- end -%>
+</ul>
+<!-- tab contents -->
+<div id='article_tab_content' class='tab-content'>
+  <div class='tab-pane fade in active' id='<%= all_articles_tabcontent %>'>
+    <%- if @articles.any? -%>
+      <%= render('list') unless @articles.blank? %>
+    <%- else -%>
+      <%= alert_messages(t('.no_article')) if @articles.blank? %>
+    <%- end -%>
+  </div>
+  <div class='tab-pane fade' id='<%= recent_feedback_tabcontent %>'></div>
+  <div class='tab-pane fade' id='<%= recent_recommend_tabcontent %>'></div>
+  <%- if can? :favor, Article -%>
+    <div class='tab-pane fade' id='<%= favorites_tabcontent %>'></div>
+  <%- end -%>
+  <%- if can? :create, Article -%>
+    <div class='tab-pane fade' id='<%= my_articles_tabcontent %>'></div>
+    <div class='tab-pane fade' id='<%= privates_tabcontent %>'></div>
+  <%- end -%>
+</div>

@@ -1,0 +1,24 @@
+ja:
+  user:
+    icon_url_help: "Gravater等で作成したオンラインアイコンのURLを記入"
+    admin_authentication_error: "管理者認証に失敗しました。"
+  activerecord:
+    attributes:
+      user:
+        username: "ユーザ名"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認)"
+        admin_password: "管理者パスワード"
+        admin_password_confirmation: "管理者パスワード(確認)"
+        nickname: "ニックネーム"
+        icon_url: "アイコンURL"
+        icon: "アイコン"
+        role_id: "ユーザ種別"
+        article_recommendations_count: "お勧め記事数"
+        feedback_recommendations_count: "お勧めコメント数"
+        articles_count: "投稿数"
+        markup_lang: "マークアップ記法"
+    errors:
+      models:
+        user:

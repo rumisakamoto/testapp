@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  value: 1
+  deleted_at: 2012-06-13 17:30:42
+  lock_version: 1
+  timestamps: 2012-06-13 17:30:42
+
+two:
+  name: MyString
+  value: 1
+  deleted_at: 2012-06-13 17:30:42
+  lock_version: 1
+  timestamps: 2012-06-13 17:30:42

@@ -1,0 +1,79 @@
+<script type="text/javascript">
+  $(function(){
+    $('#preview_tab').click(function(){
+      $.ajax({
+        type: "post",
+        url: "<%= preview_feedback_path(article_id: @feedback.article_id) %>",
+        dataType: 'html',
+        data: {
+          content:$('#feedback_content').val(),
+          notation_type: $('#feedback_notation_type').val(),
+        },
+        success: function(data, textStatus){
+          $('#preview_result').html(data);
+        }
+      })
+    })
+  });
+</script>
+
+<%= form_for [@article, @feedback], html: { class: "form-horizontal" } do |f| %>
+
+  <% if @feedback.errors.any? %>
+    <%= error_messages(@feedback) %>
+  <% end %>
+
+  <%# if @article %>
+    <%= f.hidden_field :article_id, value: @article.id %>
+  <%# else %>
+    <%#= f.hidden_field :article_id, value: params[:article_id] %>
+  <%# end %>
+
+<fieldset>
+  <!-- tab headers -->
+  <ul class="nav nav-pills" id="feedback_tab">
+    <li class="active"><a href="#edit" data-toggle="pill"><i class="icon-edit"></i> <%= t('feedback.edit') %></a></li>
+    <li id="preview_tab" ><a href="#preview" data-toggle="pill"><i class="icon-check"></i> <%= t('feedback.preview') %></a></li>
+  </ul>
+  <!-- tab contents -->
+  <div id="feedback_tab_content" class="tab-content">
+    <div class="tab-pane fade in active" id="edit">
+      <div class="control-group<%= mark_error(@feedback, :content) %>">
+        <%= f.label :content, class: "control-label" %>
+        <div class="controls">
+          <%= f.text_area :content, class: "input-xxlarge", rows: 5 %>
+        </div>
+        <script type="text/javascript">
+          $("#feedback_content").enableTab();
+        </script>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="preview">
+      <div class="well" id="preview_result"></div>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :notation_type, class: "control-label" %>
+    <div class="controls">
+      <%= f.select :notation_type, options_for_select(@feedback.notation_types.map { |key, value| [value, key] }, @feedback.notation_type) %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :feedback_type, class: "control-label" %>
+    <div class="controls">
+      <%- Feedback::FeedbackTypes.to_hash.map do |key, value| -%>
+        <label class="radio inline">
+        <%- if key == Feedback::FeedbackTypes::NORMAL -%>
+          <%= f.radio_button :feedback_type, key, checked: true %> <%= value %>
+        <%- else -%>
+          <%= f.radio_button :feedback_type, key %> <%= value %>
+        <%- end -%>
+        </label>
+      <%- end -%>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn btn-primary"%>
+  </div>
+</fieldset>
+<% end %>

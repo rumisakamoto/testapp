@@ -1,0 +1,16 @@
+<% if !@users.nil? && @users.any? -%>
+<%= t 'info_mail.monthly.user.header', brand: t('brand_name'), rank_count: Settings.ranking.item_count %>
+
+<% @users.each_with_index do |user, i| -%>
+<%= t 'info_mail.monthly.user.rank', rank: (i + 1) %>
+<%= t 'info_mail.monthly.user.name' %><%= user.nickname %>
+<%= t 'info_mail.monthly.user.articles_count' %><%= Article.count_created_on_last_month_by_user user.id %>
+
+<%- end %>
+
+<% else -%>
+<%= t 'info_mail.monthly.no_user.message' %>
+<%= root_path only_path: false, host: Settings.host_name %>
+<%- end %>
+
+---

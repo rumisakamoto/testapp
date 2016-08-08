@@ -1,0 +1,22 @@
+ja:
+  feedbacks:
+    recommend:
+      item: "コメントの推薦"
+    create:
+      title: "コメント投稿"
+      success: "コメントを投稿しました。"
+      cancel: "キャンセル"
+      #failed: "コメントの投稿に失敗しました。"
+    new:
+      title: "コメント投稿"
+      cancel: "キャンセル"
+    edit:
+      title: "コメント編集"
+      cancel: "キャンセル"
+    update:
+      title: "コメント編集"
+      success: "コメントを更新しました。"
+      #failed: "コメントの更新に失敗しました。"
+    destroy:
+      title: "コメント削除"
+      success: "コメントを削除しました。"

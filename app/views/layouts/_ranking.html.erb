@@ -1,0 +1,12 @@
+<%- unless model_list.blank? -%>
+  <div class="well sidebar-nav">
+    <%= side_menu_title "ranking.#{ranking_type}" %>
+    <ol>
+      <%= ranking_list(model_list, ranking_type) %>
+      <span id="more_<%= ranking_type %>_ranking_span"></span>
+    </ol>
+    <div align="right" id="more_<%= ranking_type %>_ranking_link_span">
+      <%= more_ranking_link(model_list, ranking_type) %>
+    </div>
+  </div>
+<%- end -%>

@@ -1,0 +1,100 @@
+<script type='text/javascript'>
+  $(function(){
+    $('#preview_tab').click(function(){
+      $.ajax({
+        type: 'post',
+        url: '<%= preview_article_path %>',
+        dataType: 'html',
+        data: {
+          content:$('#article_content').val(),
+          notation_type: $('#article_notation_type').val(),
+        },
+        success: function(data, textStatus){
+          $('#preview_result').html(data);
+        },
+        error: function(){
+          $('#preview_result').html('<p>Article preview failed.</p>');
+        }
+      })
+    });
+    $('.tagCheck').click(function() {
+      var tagValue = '[' + $(this).val() + ']';
+      if ($(this).is(':checked')) {
+        $('#article_selected_tags').val($('#article_selected_tags').val() + tagValue);
+      } else {
+        $('#article_selected_tags').val($('#article_selected_tags').val().replace(tagValue, ''));
+      }
+    });
+  });
+</script>
+
+<%= form_for @article, format: :js, remote: true, html: { class: 'well form-horizontal' } do |f| %>
+  <span id="new_article_validation_error_span">
+  </span>
+
+<fieldset>
+  <div align='right' id='new_article_close_div'>
+    <a id='new_article_close_button' class='close'>&times;</a>
+  </div>
+  <div class='control-group<%= mark_error(@article, :title) %>'>
+    <%= f.label :title, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.text_field :title, class: 'input-xxlarge' %>
+    </div>
+  </div>
+  <!-- tab headers -->
+  <ul class='nav nav-pills' id='article_tab'>
+    <li class='active'><a href='#edit' data-toggle='pill'><i class='icon-edit'></i><%= t('article.edit') %></a></li>
+    <li id='preview_tab' ><a href='#preview' data-toggle='pill'><i class='icon-check'></i><%= t('article.preview') %></a></li>
+  </ul>
+  <!-- tab contents -->
+  <div id='article_tab_content' class='tab-content'>
+    <div class='tab-pane fade in active' id='edit'>
+      <div class='control-group<%= mark_error(@article, :content) %>'>
+        <%= f.label :content, class: 'control-label' %>
+        <div class='controls'>
+          <%= f.text_area :content, class: 'input-xxlarge', rows: 8 %>
+        </div>
+        <script type='text/javascript'>
+          $('#article_content').enableTab();
+        </script>
+      </div>
+    </div>
+    <div class='tab-pane fade' id='preview'>
+      <div class='well' id='preview_result'></div>
+    </div>
+  </div>
+  <% if @selectable_tags && @selectable_tags.any? %>
+  <div class='control-group<%= mark_error(@article, :selected_tags) %>'>
+    <%= f.label :selected_tags, class: 'control-label' %>
+    <div class='controls'>
+      <div class='well'>
+        <%= tag_checkbox(@article, @selectable_tags) %>
+      </div>
+      <%= f.hidden_field :selected_tags, value: selected_tags(@article, @selectable_tags) %>
+    </div>
+  </div>
+  <% end %>
+  <div class='control-group<%= mark_error(@article, :added_tags) %>'>
+    <%= f.label :added_tags, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.text_field :added_tags, class: 'input-xlarge'%><span class="help-inline"><%= t('article.tag_help') %></span>
+    </div>
+  </div>
+  <div class='control-group'>
+    <%= f.label :notation_type, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.select :notation_type, options_for_select(@article.notation_types.map { |key, value| [value, key] }, @article.notation_type) %>
+    </div>
+  </div>
+  <div class='control-group'>
+    <%= f.label :publicity_level, class: 'control-label' %>
+    <div class='controls'>
+      <%= f.select :publicity_level, options_for_select(Accessibility.selections(current_user).map { |key, value| [value, key] }, @article.publicity_level) %>
+    </div>
+  </div>
+  <div class='form-actions'>
+    <%= f.submit nil, class: 'btn btn-primary' %>
+  </div>
+</fieldset>
+<% end %>

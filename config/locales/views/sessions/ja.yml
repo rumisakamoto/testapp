@@ -1,0 +1,15 @@
+ja:
+  sessions:
+    username: "ユーザ名"
+    password: "パスワード"
+    remember_me: "ログインしたままにする"
+    create:
+      title: "ログイン"
+      invalid: "ユーザ名かパスワードが不正です。"
+      loggedin: "ログインしました。"
+      inactive: "入力したアカウントは使用できません。"
+    new:
+      title: "ログイン"
+    destroy:
+      title: "ログイン"
+      loggedout: "ログアウトしました。"

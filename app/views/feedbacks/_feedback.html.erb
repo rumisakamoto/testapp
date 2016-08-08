@@ -1,0 +1,12 @@
+<div class="well">
+  <%= feedback_type(feedback) %>
+  <%= raw feedback.to_html %>
+  <br/>
+  <br/>
+  <span id="feedbackRecommendBtn_<%= feedback.id %>"><%= recommend_feedback_button(feedback) %></span>
+  <%= edit_feedback_button(@article, feedback) %>
+  <%= remove_feedback_button(@article, feedback) %> <span id="feedbackAjaxErrorSpan_<%= feedback.id %>"></span>
+  <br/>
+  <br/>
+  <%= user_icon("32x32", feedback.user) %> - <%= since_updated feedback.last_updated_at %>
+</div>

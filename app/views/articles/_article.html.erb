@@ -1,0 +1,33 @@
+<div class="well">
+  <%= related_tags(article) %>
+  <%= article_title(article) %>
+  <div class="articleDiv">
+    <%- if action_name == 'show' -%>
+      <%= raw article.to_html %>
+    <%- else -%>
+      <%= raw truncate(strip_tags(article.to_html), length: 300) %>
+    <%- end -%>
+  </div>
+  <%- if action_name != 'show' -%>
+    <div align="right"><%= link_to t('articles.continue'), article_path(article) %></div>
+  <%- end -%>
+  <hr/>
+  <table>
+    <tr>
+      <td width="70%">
+        <span id="articleRecommendBtn_<%= article.id %>"><%= recommend_button(article) %></span>
+        <span id="articleFavoriteBtn_<%= article.id %>"><%= favorite_button(article) %></span>
+        <%= edit_button(article) %>
+        <%= remove_button(article) %> <span id="articleAjaxErrorSpan_<%= article.id %>"></span>
+      </td>
+      <td>
+          <%= feedbacks_summary(article) %>
+      </td>
+    </tr>
+  </table>
+  <br/>
+  <div>
+      <%= user_icon("32x32", article.user) %> - <%= since_updated article.last_updated_at %>
+  </div>
+  <%= publicity_tag(article) %>
+</div>

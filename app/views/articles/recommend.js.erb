@@ -1,0 +1,23 @@
+$(function(article){
+  var id = <%= article.id %>;
+  var button = '<%= recommend_button(article) %>';
+  var span = $('#articleRecommendBtn_' + id);
+  var error_span = $('#articleAjaxErrorSpan_' + id);
+  $(".recommend_btn")
+  .one("ajax:success", function(){
+    error_span.empty();
+    span.html(button);
+  })
+  .one("ajax:error", function(){
+    error_span.html("<%= escape_javascript ajax_error_messages('.item') %>");
+  })
+  $(".cancel_recommend_btn")
+  .one("ajax:success", function(){
+    error_span.empty();
+    span.html(button);
+  })
+  .one("ajax:error", function(){
+    error_span.html("<%= escape_javascript ajax_error_messages('.item') %>");
+  })
+});
+

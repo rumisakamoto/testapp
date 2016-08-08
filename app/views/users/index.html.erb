@@ -1,0 +1,40 @@
+<%= page_title %>
+<%- if Settings.authentication.setting.eql? User::AuthenticationMethod::APP -%>
+  <div align="right">
+    <%= link_to signup_path, class: "btn" do -%><i class="icon-plus"></i><%- end -%>
+  </div>
+  <hr/>
+<%- end -%>
+<table class="table table-striped">
+  <thead>
+    <th><%= t('activerecord.attributes.user.username') %></th>
+    <th><%= t('activerecord.attributes.user.email') %></th>
+    <th><%= t('activerecord.attributes.user.nickname') %></th>
+    <th><%= t('activerecord.attributes.user.icon') %></th>
+    <th><%= t('activerecord.attributes.user.role_id') %></th>
+    <th><%= get_resource('edit') %></th>
+    <th><%= get_resource('delete') %></th>
+  </thead>
+  <tbody>
+    <%- @users.each do |user| -%>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.nickname %></td>
+        <td><%= image_tag icon_name(user), size: Settings.icon_size.small %></td>
+        <td><%= Role.get_name(user.role_id) %></td>
+        <td><%= link_to edit_user_path(user), class: "btn" do -%><i class="icon-pencil"></i><%- end -%></td>
+        <td>
+          <%- unless user.role.accessibility.admin? -%>
+            <%- disabled = " disabled" if user.role.accessibility.inactive? -%>
+            <%= link_to user_path(user), confirm: t('confirmation'), class: "btn#{disabled}", method: :delete do %><i class="icon-remove"></i><% end %>
+          <%- end -%>
+        </td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>
+<br/>
+<center>
+  <%= will_paginate @users %>
+</center>

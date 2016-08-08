@@ -1,0 +1,40 @@
+<div class="well">
+  <%= user_icon_large(@user) %>
+  <hr/>
+  <%- if @user.articles_count > 0 -%>
+    <%= link_to articles_by_user_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.articles_count %></font><%= t('.articles_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+  <%- if @user.favorites_count > 0 -%>
+    <%= link_to favorite_articles_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.favorites_count %></font><%= t('.favorites_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+  <%- if @user.article_recommendations_count > 0 -%>
+    <%= link_to recommend_articles_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.article_recommendations_count %></font><%= t('.article_recommendations_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+  <%- if @user.feedback_recommendations_count > 0 -%>
+    <%= link_to recommend_feedbacks_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.feedback_recommendations_count %></font><%= t('.feedback_recommendations_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+  <%- if @user.article_recommended_count > 0 -%>
+    <%= link_to recommended_articles_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.article_recommended_count %></font><%= t('.article_recommended_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+  <%- if @user.feedback_recommended_count > 0 -%>
+    <%= link_to recommended_feedbacks_path(user_id: @user.id) do -%>
+      <p><font size="<%= Settings.font_size_addition.large %>"><%= @user.feedback_recommended_count %></font><%= t('.feedback_recommended_count') %></p>
+      <br/>
+    <%- end -%>
+  <%- end -%>
+</div>

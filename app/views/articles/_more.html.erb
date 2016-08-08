@@ -1,0 +1,8 @@
+<br/>
+<% if @articles.next_page -%>
+<center>
+  <%= link_to @more_link_path, class: "btn", width: "120", id: "show_more_articles", remote: true do %>
+    <i class="icon-chevron-down"></i> <%= t("more") %> <i class="icon-chevron-down"></i>
+  <% end %>
+</center>
+<%- end %>

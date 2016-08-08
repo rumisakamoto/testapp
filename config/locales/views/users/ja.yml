@@ -1,0 +1,34 @@
+ja:
+  users:
+    index:
+      title: "ユーザ一覧"
+      edit: "編集"
+      delete: "削除"
+    create:
+      title: "新規ユーザ登録"
+      signedup: "サインアップしました。"
+    new:
+      title: "新規ユーザ登録"
+    edit:
+      title: "ユーザ情報更新"
+      cancel: "キャンセル"
+      app_message: |
+        パスワードを変更する場合、新しいパスワードを2回入力してください。
+    update:
+      title: "ユーザ情報更新"
+      cancel: "キャンセル"
+      app_message: |
+        パスワードを変更する場合、新しいパスワードを2回入力してください。
+    show:
+      title: "ユーザ情報"
+      histories: "投稿履歴"
+      user_info: "登録情報"
+    userinfo:
+      user_edit: "登録情報編集"
+    histories:
+      articles_count: " 回投稿しました。"
+      favorites_count: " 個お気に入りがあります。"
+      article_recommendations_count: " 回投稿を推薦しました。"
+      feedback_recommendations_count: " 回コメントを推薦しました。"
+      article_recommended_count: " 回投稿が推薦されました。"
+      feedback_recommended_count: " 回コメントが推薦されました。"

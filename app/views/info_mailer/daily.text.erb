@@ -1,0 +1,22 @@
+<%= t 'info_mail.daily.header', brand: t('brand_name') %>
+
+<% if !@new_articles.nil? && @new_articles.any? -%>
+<%= t 'info_mail.daily.article.header' %>
+
+<%= t 'info_mail.daily.article.count' %><%= @new_articles.length %>
+
+<%= t 'info_mail.daily.article.caution' %>
+
+<% @new_articles.each do |article| -%>
+<%= t 'info_mail.daily.article.title' %><%= article.title %>
+<%= t 'info_mail.daily.article.author' %><%= article.user.nickname %>
+<%= t 'info_mail.daily.article.link' %><%= article_path id: article.id, only_path: false, host: Settings.host_name %>
+
+<%- end %>
+
+<% else -%>
+<%= t 'info_mail.daily.no_article.message' %>
+<%= root_path only_path: false, host: Settings.host_name %>
+<%- end %>
+
+---

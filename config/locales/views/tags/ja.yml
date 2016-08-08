@@ -1,0 +1,19 @@
+ja:
+  tags:
+    index:
+      title: "タグ一覧"
+      new: "新規タグ登録"
+    destroy:
+      success: "タグを削除しました。"
+      error: "記事が作成されているためタグを削除できません。"
+    edit:
+      title: "タグ編集"
+    update:
+      title: "タグ編集"
+      success: "タグを更新しました。"
+    new:
+      title: "タグ登録"
+    create:
+      title: "タグ登録"
+      success: "タグを登録しました。"
+

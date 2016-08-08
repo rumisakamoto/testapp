@@ -1,0 +1,77 @@
+<%= form_for @user, html: { class: "well form-horizontal" } do |f| %>
+  <% if @user.errors.any? %>
+    <%= error_messages(@user) %>
+  <% end %>
+
+  <div class="control-group<%= mark_error(@user, :username) %>">
+    <%= f.label :username, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :username, class: "input-xlarge", readonly: !Settings.authentication.setting.eql?(Settings.authentication.methods.app) %>
+    </div>
+  </div>
+  <div class="control-group<%= mark_error(@user, :email) %>">
+    <%= f.label :email, class: "control-label" %>
+    <div class="controls">
+      <%= f.email_field :email, class: "input-xlarge" %>
+    </div>
+  </div>
+  <div class="control-group<%= mark_error(@user, :nickname) %>">
+    <%= f.label :nickname, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :nickname, class: "input-xlarge" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :icon_url, class: "control-label" %>
+    <div class="controls">
+      <%= f.text_field :icon_url, class: "input-xxlarge", placeholder: t('user.icon_url_help') %>
+    </div>
+  </div>
+  <%- if can? :create, @user -%>
+  <div class="control-group">
+    <%= f.label :role_id, class: "control-label" %>
+    <div class="controls">
+      <%= f.select :role_id, options_for_select(Role.selections.map { |key, value| [value, key] }, @user.role_id) %>
+    </div>
+  </div>
+  <%- end -%>
+  <%- if @user.require_admin_password -%> <%# admin user changing another user info %>
+    <div class="control-group<%= mark_error(@user, :admin_password) %>">
+      <%= f.label :admin_password, class: "control-label" %>
+      <div class="controls">
+        <%= f.password_field :admin_password, class: "input-xlarge" %>
+      </div>
+    </div>
+    <div class="control-group<%= mark_error(@user, :admin_password_confirmation) %>">
+      <%= f.label :admin_password_confirmation, class: "control-label" %>
+      <div class="controls">
+        <%= f.password_field :admin_password_confirmation, class: "input-xlarge" %>
+      </div>
+    </div>
+  <%- else -%>
+    <% #アプリ固有認証の場合のみパスワード変更ができる %>
+    <% if Settings.authentication.setting.eql?(Settings.authentication.methods.app) %>
+      <div class="control-group<%= mark_error(@user, :password) %>">
+        <%= f.label :password, class: "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password, class: "input-xlarge" %>
+        </div>
+      </div>
+      <div class="control-group<%= mark_error(@user, :password_confirmation) %>">
+        <%= f.label :password_confirmation, class: "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation, class: "input-xlarge" %>
+        </div>
+      </div>
+    <% end %>
+  <%- end -%>
+  <div>
+    <%= f.label :markup_lang, class: "control-label" %>
+    <div class="controls">
+      <%= f.select :markup_lang, options_for_select(ContentFormatter::WikiNotationTypes.to_hash.map { |key, value| [value, key] }, @user.markup_lang) %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,67 @@
+ja:
+  articles:
+    publicity:
+      private: "プライベート"
+      limited: "限定公開"
+      unlimited: "全体公開"
+    continue: "続きを見る"
+    search:
+      search_result: "の検索結果"
+      no_article: "該当する投稿がありません。"
+    recommend:
+      item: "記事の推薦"
+    list:
+      list_load_error: "投稿一覧の取得に失敗しました。"
+      html:
+        list_load_error: "投稿一覧の取得に失敗しました。"
+    index:
+      title: "投稿一覧"
+      no_article: "該当する投稿がありません。"
+      new_article: "新規投稿"
+      all_articles: "すべての投稿"
+      favorites: "お気に入り"
+      privates: "自分の投稿(非公開)"
+      my_articles: "自分の投稿(公開中)"
+      recent_recommend: "最近推薦された投稿"
+      recent_feedback: "最近コメントされた投稿"
+      list_load_error: "投稿一覧の取得に失敗しました。"
+    create:
+      title: "新規投稿"
+      success: "記事を投稿しました。"
+      new_article_error: "記事の投稿に失敗しました。"
+    new:
+      title: "新規投稿"
+      new_article_error: "記事の投稿に失敗しました。"
+      cancel: "キャンセル"
+    edit:
+      title: "記事編集"
+      cancel: "キャンセル"
+    update:
+      title: "記事編集"
+      success: "記事を更新しました。"
+    destroy:
+      title: "削除完了"
+      success: "記事を削除しました。"
+    show:
+      cancel: "キャンセル"
+    articles_by_tag:
+      items: "投稿数："
+      no_article: "閲覧可能な投稿がありません。"
+    articles_by_user:
+      title: "このユーザが投稿した記事一覧"
+      no_article: "閲覧可能な投稿がありません。"
+    favorite_articles:
+      title: "このユーザがお気に入りの記事一覧"
+      no_article: "閲覧可能な投稿がありません。"
+    recommend_articles:
+      title: "このユーザが推薦する記事一覧"
+      no_article: "閲覧可能な投稿がありません。"
+    recommended_articles:
+      title: "他のユーザが推薦したこのユーザの記事一覧"
+      no_article: "閲覧可能な投稿がありません。"
+    recommended_feedbacks:
+      title: "このユーザのコメントが推薦された記事一覧"
+      no_article: "閲覧可能な投稿がありません。"
+    recently_created_articles:
+      login_failed: "ログインできませんでした。ユーザ名とパスワードを確認してください。"
+      error: "エラーが発生しました。"

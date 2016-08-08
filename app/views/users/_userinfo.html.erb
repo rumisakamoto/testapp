@@ -1,0 +1,41 @@
+<div class="well">
+  <%= user_icon_large(@user) %>
+  <% if can?(:edit, @user) %>
+    <div align="right">
+      <%= link_to edit_user_path, class: "btn" do %><i class="icon-edit"></i> <%= t('.user_edit') %><% end %>
+    </div>
+    <br/>
+  <% end %>
+  <table class="table user_info">
+    <% if can?(:edit, @user) %>
+    <tr>
+      <td><h3><%= t('activerecord.attributes.user.username') %></h3></td>
+      <td><h3><%= @user.username %></h3></td>
+    </tr>
+    <% end %>
+    <td><h3><%= t('activerecord.attributes.user.nickname') %></h3></td>
+    <td><h3><%= @user.nickname %></h3></td>
+    <% if can?(:edit, @user) %>
+    <tr>
+      <td><h3><%= t('activerecord.attributes.user.role_id') %></h3></td>
+      <td><h3><%= t @user.role.name %></h3></td>
+    </tr>
+    <tr>
+      <td><h3><%= t('activerecord.attributes.user.icon_url') %></h3></td>
+      <td class="userIconUrl"><h4><%= @user.icon_url %></h4></td>
+    </tr>
+    <tr>
+      <td><h3><%= t('activerecord.attributes.user.markup_lang') %></h3></td>
+      <td>
+          <h4>
+          <% if @user.markup_lang %>
+              <%= t(ContentFormatter::WikiNotationTypes.to_hash[@user.markup_lang]) %>
+          <% else %>
+              <%= t('notation_type.none') %>
+          <% end %>
+          </h4>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

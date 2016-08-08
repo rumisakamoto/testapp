@@ -1,0 +1,17 @@
+ja:
+  toppage:
+      index:
+        welcome: |
+          %{brand} へようこそ！
+          %{brand} は情報共有のための全文検索システムです。
+        welcome_app: |
+          まだアカウントをお持ちでない方は管理者に作成してもらいましょう。
+        welcome_ad: |
+          普段お使いの ActiveDirectory アカウントでログイン可能です。
+        welcome_ldap: |
+          普段お使いの LDAP アカウントでログイン可能です。
+        guide:
+          利用ガイド
+        guide_title:
+          利用ガイド
+

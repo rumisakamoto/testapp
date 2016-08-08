@@ -1,0 +1,96 @@
+# -*- encoding : utf-8 -*-
+constants: &constants
+  article:
+    result_code:
+      success: "10"
+      validation_error: "11"
+  authentication:
+    methods:
+      ldap: "ldap"
+      ad: "activedirectory"
+      app: "application"
+    result_code:
+      success: "0"
+      validation_error: "1"
+      invalid: "2"
+      inactive: "3"
+      logout: "98"
+    setting: "application" # set authentication method to either "ldap" or "application" or "activedirectory" see app/model/user
+  user:
+    admin:
+      username: "admin"
+      password: "admin"
+    anonymous:
+      username: "anonymous"
+  activedirectory:
+    host: ""
+    port: ""
+    base: ""
+    auth:
+      method: "simple"
+  ldap:
+    host: ""
+    port: ""
+    base: ""
+    password_prefix: "{CRYPT}"
+    #uid_column_name: "uid"
+    auth:
+      method: "simple"
+      username: ""
+      password: "secret"
+  accessibility:
+    admin: "accessibility.admin"
+    manager: "accessibility.manager"
+    leader: "accessibility.leader"
+    member: "accessibility.member"
+    anonymous: "accessibility.anonymous"
+    inactive: "accessibility.inactive"
+    private: "accessibility.private"
+  role:
+    default: "role.member" # LDAP で初めて認証されたユーザを新規作成するときの権限
+    admin: "role.admin"
+    manager: "role.manager"
+    leader: "role.leader"
+    member: "role.member"
+    anonymous: "role.anonymous"
+    inactive: "role.inactive"
+  icon:
+    user:
+      default_image_url: "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm"
+#guest_image:       "guest.png"
+      guest_image:       "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm"
+      alt_text:          "User Icon"
+  icon_size:
+    large: "45x45"
+    medium: "30x30"
+    small: "20x20"
+    very_small: "15x15"
+  font_size_addition:
+    large: "+3"
+  ranking:
+    item_count: "20"
+
+development:
+  <<: *constants
+  mail:
+    system_to: ""
+    info_to: ""
+    from: ""
+  host_name: "localhost:3000"
+
+test:
+  <<: *constants
+  mail:
+    system_to: ""
+    info_to: ""
+    from: ""
+  host_name: "localhost:3000"
+
+production:
+  <<: *constants
+  mail:
+    system_to: ""
+    info_to: ""
+    from: ""
+  host_name: ""
+
